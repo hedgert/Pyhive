@@ -37,6 +37,11 @@ setup(
                         "asyncio": "threading",
                     },
                 ),
+                unasync.Rule(
+                    "/apyhiveapi/helper/",
+                    "/pyhiveapi/helper/",
+                    additional_replacements={"apyhiveapi": "pyhiveapi"},
+                ),
             ]
         )
     },
