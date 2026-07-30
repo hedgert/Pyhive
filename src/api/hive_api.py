@@ -22,7 +22,7 @@ _SSO_ASSIGNMENT = re.compile(r'window\.(\w+)\s*=\s*"([^"]*)"')
 class HiveApi:
     """Hive API Code."""
 
-    def __init__(self, hive_session=None, token=None):
+    def __init__(self, hive_session=None, token=None, websession=None):
         """Hive API initialisation."""
         self.urls = {
             "properties": "https://sso.hivehome.com/",
