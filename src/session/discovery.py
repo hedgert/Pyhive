@@ -139,7 +139,7 @@ class DiscoveryMixin:
         if config != {}:
             if "tokens" in config and not self.config.file:
                 _LOGGER.debug("start_session - Updating tokens from config")
-                await self.update_tokens(config["tokens"], False)  # type: ignore[attr-defined]
+                await self.update_tokens(config["tokens"], True)  # type: ignore[attr-defined]
 
             if "username" in config and not self.config.file:
                 self.auth.username = config["username"]
