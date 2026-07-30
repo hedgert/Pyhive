@@ -4,43 +4,56 @@
 import unasync
 from setuptools import setup
 
+from pathlib import Path
+import sys
+project_root = Path.cwd()
+sys.path.insert(0, str(project_root))
+from _build import PyHiveUnasyncRule
+
+import unasync
+
+print("=" * 80)
+print("setup.py executing")
+print("Python:", sys.executable)
+print("unasync:", unasync.__file__)
+print("unasync version:", getattr(unasync, "__version__", "<unknown>"))
+print("=" * 80)
+
 setup(
     cmdclass={
         "build_py": unasync.cmdclass_build_py(
             rules=[
-                unasync.Rule(
+                PyHiveUnasyncRule(
                     "/apyhiveapi/",
-                    "/pyhiveapi/",
+                    "/pyhive/",
                     additional_replacements={
-                        "apyhiveapi": "pyhiveapi",
-                        "asyncio": "threading",
+                        "apyhiveapi": "pyhive",
                     },
                 ),
-                unasync.Rule(
+                PyHiveUnasyncRule(
                     "/apyhiveapi/api/",
-                    "/pyhiveapi/api/",
-                    additional_replacements={"apyhiveapi": "pyhiveapi"},
+                    "/pyhive/api/",
+                    additional_replacements={"apyhiveapi": "pyhive"},
                 ),
-                unasync.Rule(
+                PyHiveUnasyncRule(
                     "/apyhiveapi/devices/",
-                    "/pyhiveapi/devices/",
+                    "/pyhive/devices/",
                     additional_replacements={
-                        "apyhiveapi": "pyhiveapi",
-                        "asyncio": "threading",
+                        "apyhiveapi": "pyhive",
                     },
                 ),
-                unasync.Rule(
+                PyHiveUnasyncRule(
                     "/apyhiveapi/session/",
-                    "/pyhiveapi/session/",
+                    "/pyhive/session/",
                     additional_replacements={
-                        "apyhiveapi": "pyhiveapi",
-                        "asyncio": "threading",
+                        "apyhiveapi": "pyhive",
+# remove as this creates at least 4 wrong code instances where replacement is not appropriate                       "asyncio": "threading",
                     },
                 ),
-                unasync.Rule(
+                PyHiveUnasyncRule(
                     "/apyhiveapi/helper/",
-                    "/pyhiveapi/helper/",
-                    additional_replacements={"apyhiveapi": "pyhiveapi"},
+                    "/pyhive/helper/",
+                    additional_replacements={"apyhiveapi": "pyhive"},
                 ),
             ]
         )

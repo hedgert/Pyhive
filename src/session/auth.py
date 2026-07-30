@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from pyhive import Lock
 import logging
 from datetime import datetime, timedelta
 from typing import Any
@@ -34,7 +35,7 @@ class SessionAuthMixin:
     config: Any
     helper: Any
     _refresh_threshold: float
-    _refresh_lock: asyncio.Lock
+    _refresh_lock: Lock
 
     async def _retry_with_backoff(
         self,

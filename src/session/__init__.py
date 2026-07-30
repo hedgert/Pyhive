@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from pyhive import Lock
 from typing import Any
 
 from aiohttp import ClientSession
@@ -54,8 +55,8 @@ class HiveSession(SessionCompatMixin, SessionAuthMixin, PollingMixin, DiscoveryM
         self.api = API(hive_session=self, websession=websession)
         self.helper = HiveHelper(self)
         self.attr = HiveAttributes(self)
-        self.update_lock = asyncio.Lock()
-        self._refresh_lock = asyncio.Lock()
+        self.update_lock = Lock()
+        self._refresh_lock = Lock()
         self.tokens = SessionTokens()
         self.config = SessionConfig(username=username)
         self.data: Any = Map(

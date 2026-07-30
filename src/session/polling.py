@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from pyhive import Lock
 import logging
 import time
 from datetime import datetime, timedelta
@@ -31,7 +32,7 @@ class PollingMixin:
     api: Any
     data: Any
     entity_cache: dict
-    update_lock: asyncio.Lock
+    update_lock: Lock
     _update_task: asyncio.Task | None
     _last_poll_slow: bool
     _slow_poll_threshold: int

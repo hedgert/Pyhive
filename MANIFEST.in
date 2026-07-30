@@ -1,2 +1,3 @@
 recursive-include pyhiveapi *
 recursive-include data *
+include _build.py

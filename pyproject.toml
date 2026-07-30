@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=70", "wheel", "unasync"]
+requires = ["setuptools>=70", "wheel", "unasync @ git+https://github.com/hedgert/unasync.git@v0.6.0+extended.1",]
 build-backend = "setuptools.build_meta"
 
 [project]
