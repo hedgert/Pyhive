@@ -342,9 +342,11 @@ class SessionAuthMixin:
                         force_refresh,
                     )
                     try:
-                        result = await self.auth.refresh_token(
-                            self.tokens.token_data.get("refreshToken")
-                        )
+                        refresh = self.tokens.token_data.get("refreshToken")
+                        if not refresh:
+                            raise HiveRefreshTokenExpired("No refresh token available")
+
+                        result = await self.auth.refresh_token(refresh)
 
                         if result and "AuthenticationResult" in result:
                             auth_keys = list(result["AuthenticationResult"].keys())

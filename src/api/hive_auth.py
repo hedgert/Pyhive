@@ -528,9 +528,18 @@ class HiveAuth:
                 AuthFlow="REFRESH_TOKEN_AUTH",
                 AuthParameters=auth_params,
             )
-        except botocore.exceptions.EndpointConnectionError as err:
-            if err.__class__.__name__ == "EndpointConnectionError":
-                raise HiveApiError from err
+        except botocore.exceptions.ClientError as err:
+            error = (err.response or {}).get("Error", {})
+            code = error.get("Code")
+            message = error.get("Message", "")
+
+            if (
+                code == "NotAuthorizedException"
+                and "Invalid Refresh Token" in message
+            ):
+                raise HiveRefreshTokenExpired from err
+
+            raise HiveFailedToRefreshTokens from err
 
         return result
 
