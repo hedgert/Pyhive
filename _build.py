@@ -23,8 +23,10 @@ class PyHiveUnasyncRule(Rule):
     }
 
     def _postprocess_tokens(self, tokens):
+        # temporary bypass of function while testing move of code to unasync
+        return tokens
 
-
+    def _old_impl_of_postprocess_tokens(self, tokens):
         required_imports = set()
         seen_imports = set()
         tokens = list(tokens)
