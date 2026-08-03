@@ -28,7 +28,7 @@ setup(
                     additional_replacements={
                         "apyhiveapi": "pyhive",
                     },
-                    sequence_rules={
+                    dual_name_rules={
                         ("asyncio", "current_task"): {
                             "replacement": (None, "current_thread"),
                             "import": ("threading", "current_thread"),
