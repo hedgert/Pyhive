@@ -1,10 +1,14 @@
 [build-system]
-requires = ["setuptools>=70", "wheel", "unasync"]
+requires = [
+    "setuptools>=70",
+    "wheel",
+    "unasync @ git+https://github.com/hedgert/unasync.git@4eb0a01bbf0800ad488af46ab80e0b21a2aba173"
+]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyhive-integration"
-version = "2.0.0"
+version = "2.0.1"
 description = "A Python library to interface with the Hive API"
 readme = "README.md"
 license = { text = "MIT" }
@@ -53,7 +57,7 @@ dev = [
 ]
 
 [tool.setuptools]
-packages = ["apyhiveapi", "apyhiveapi.api", "apyhiveapi.helper", "pyhive", "pyhive.api", "pyhive.helper"]
+packages = ["apyhiveapi", "apyhiveapi.api", "apyhiveapi.devices", "apyhiveapi.helper", "apyhiveapi.session", "pyhive", "pyhive.api", "pyhive.devices", "pyhive.helper", "pyhive.session"]
 
 [tool.setuptools.package-dir]
 apyhiveapi = "src"
